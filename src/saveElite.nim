@@ -1,4 +1,4 @@
-from ../objects/basic import Gene, Population
+from objects/basic import Gene, Population
 
 
 proc runSelect*(genes: seq[Gene], selectRange: int): seq[Gene] =

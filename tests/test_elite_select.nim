@@ -1,5 +1,6 @@
 import unittest
 from objects/basic import Gene
+import saveElite
 
 
 proc getSmapleGenes(n=10): seq[Gene] =
@@ -8,7 +9,6 @@ proc getSmapleGenes(n=10): seq[Gene] =
     result.add(Gene(chrom: @[1,2,3,4,5], score: 0.1))
 
 
-from elite/select import runSelect
 test "Can select some elite":
   var
     sampleGenes = getSmapleGenes()
