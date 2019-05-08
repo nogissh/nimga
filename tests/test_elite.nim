@@ -1,6 +1,6 @@
 import unittest
 from objects/basic import Gene
-import saveElite
+import elite
 
 
 proc getSmapleGenes(n=10): seq[Gene] =
@@ -13,7 +13,7 @@ test "Can select some elite":
   var
     sampleGenes = getSmapleGenes()
     selectedGenes: seq[Gene]
-  selectedGenes = runSelect(sampleGenes, 1)
+  selectedGenes = select(sampleGenes, 1)
   check selectedGenes.len == 1
-  selectedGenes = runSelect(sampleGenes, 3)
+  selectedGenes = select(sampleGenes, 3)
   check selectedGenes.len == 3
