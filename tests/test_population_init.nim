@@ -15,7 +15,7 @@ test "Able to create population":
     check population.gene[0].chrom[j] <= rangeMax
 
 test "Can create population unique":
-  var population = initPopsUnique(popRange, chromRange)
+  var population = initPopulationUnique(popRange, chromRange)
   check population.gene.len == popRange
   for i in 0..<population.gene.len:
     check population.gene[i].chrom.len == chromRange

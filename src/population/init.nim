@@ -17,7 +17,7 @@ proc initPopulation*(popRange, chromRange, chromMax: int): Population =
     result.gene.add(newGene)
 
 
-proc initPopsUnique*(popRange, chromRange: int): Population =
+proc initPopulationUnique*(popRange, chromRange: int): Population =
   ##
   ## Create initial population
   ## chrom is unique, non-deplicated.
