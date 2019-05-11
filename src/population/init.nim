@@ -1,6 +1,22 @@
 import random
 import ../objects/basic
 
+
+proc initPopulation*(popRange, chromRange, chromMax: int): Population =
+  ##
+  ## Create initial population
+  ##
+  result = Population()
+
+  var newGene: Gene
+
+  for i in 0..<popRange:
+    newGene = Gene(chrom: @[], score: 0.0)
+    for j in 0..<chromRange:
+      newGene.chrom.add(rand(chromMax))
+    result.gene.add(newGene)
+
+
 proc initPopsUnique*(popRange, chromRange: int): Population =
   ##
   ## Create initial population
@@ -8,11 +24,14 @@ proc initPopsUnique*(popRange, chromRange: int): Population =
   ##
   result = Population()
 
-  var tmpArray: seq[int] = @[]
+  var 
+    tmpArray: seq[int]
+    newGene : Gene
+
+  tmpArray = @[]
   for n in 0..<chromRange:
     tmpArray.add(n)
 
-  var newGene: Gene
   for i in 0..<popRange:
     shuffle(tmpArray)
     newGene = Gene(chrom: tmpArray, score: 0.0)
