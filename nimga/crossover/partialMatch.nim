@@ -35,7 +35,7 @@ proc exchangeChrom*(this, another: seq[int], target: int): seq[int] =
   result[target]       = tmpChrom
 
 
-proc crossover*(oldPop: CrossoverPopulationsOld, separator: CrossoverSeparator): CrossoverPopulationsNew =
+proc crossover*(oldPop: CrossoverTargetChrom, separator: CrossoverSeparator): CrossoveredChrom =
   ##
   ## Crossover
   ##
@@ -50,7 +50,7 @@ proc crossover*(oldPop: CrossoverPopulationsOld, separator: CrossoverSeparator):
     result.b = exchangeChrom(result.b, oldPop.a, i)
 
 
-proc runPartialMatch*(a, b: seq[int], initialSplit: int): CrossoverPopulationsNew =
+proc runPartialMatch*(a, b: seq[int], initialSplit: int): CrossoveredChrom =
   ##
   ## Partial Match
   ##
@@ -58,10 +58,10 @@ proc runPartialMatch*(a, b: seq[int], initialSplit: int): CrossoverPopulationsNe
   var
     split    : int
     separator: CrossoverSeparator
-    oldPop   : CrossoverPopulationsOld
+    oldPop   : CrossoverTargetChrom
 
   split     = setSplit(initialSplit, a.len)
   separator = getCrossoverSeparator(split)
-  oldPop    = CrossoverPopulationsOld(a: a, b: b)
+  oldPop    = CrossoverTargetChrom(a: a, b: b)
 
   result = crossover(oldPop, separator)

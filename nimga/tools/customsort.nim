@@ -1,10 +1,10 @@
 import algorithm
-from ../objects import Gene
+import ../types, ../objects
 
 
 proc lambdaScore(x, y: Gene): int =
   result = cmp(x.score, y.score)
 
-proc sortGenesByScore*(genes: seq[Gene], order=Descending): seq[Gene] =
-  result = genes
+proc sortGenesByScore*(pop: Population, order=Descending): Population =
+  result = pop
   sort(result, lambdaScore, order)

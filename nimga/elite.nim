@@ -1,6 +1,6 @@
-import objects
+import types
 
-proc select*(genes: seq[Gene], selectRange: int): seq[Gene] =
+proc select*(pop: Population, selectRange: int): Population =
   result = @[]
   for i in 0..<selectRange:
-    result.add(genes[i])
+    result.add(pop[i])

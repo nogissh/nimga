@@ -25,7 +25,7 @@ proc getSeparators(points: seq[int]): seq[CrossoverSeparator] =
     result.add(CrossoverSeparator(a: points[i], b: points[i+1]))
 
 
-proc crossover(oldPop: CrossoverPopulationsOld, separators: seq[CrossoverSeparator]): CrossoverPopulationsNew =
+proc crossover(oldPop: CrossoverTargetChrom, separators: seq[CrossoverSeparator]): CrossoveredChrom =
   ##
   ## Crossover
   ##
@@ -42,17 +42,17 @@ proc crossover(oldPop: CrossoverPopulationsOld, separators: seq[CrossoverSeparat
     result.b[separators[i].a..<separators[i].b] = tmpChroms
 
 
-proc runKPoint*(a, b: seq[int], k: int): CrossoverPopulationsNew =
+proc runKPoint*(a, b: seq[int], k: int): CrossoveredChrom =
   ##
   ## k-point crossover
   ##
   var
     points    : seq[int]
     separators: seq[CrossoverSeparator]
-    oldPop    : CrossoverPopulationsOld
+    oldPop    : CrossoverTargetChrom
 
   points     = getPoints(k, a.len)
   separators = getSeparators(points)
-  oldPop     = CrossoverPopulationsOld(a: a, b: b)
+  oldPop     = CrossoverTargetChrom(a: a, b: b)
 
   result = crossover(oldPop, separators)

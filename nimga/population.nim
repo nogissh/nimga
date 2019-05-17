@@ -1,12 +1,12 @@
 import random
-import objects
+import types, objects
 
 
 proc integerStandard*(popRange, chromRange, chromMax: int): Population =
   ##
   ## Create population
   ##
-  result = Population()
+  result = @[]
 
   var newGene: Gene
 
@@ -14,7 +14,7 @@ proc integerStandard*(popRange, chromRange, chromMax: int): Population =
     newGene = Gene(chrom: @[], score: 0.0)
     for j in 0..<chromRange:
       newGene.chrom.add(rand(chromMax))
-    result.gene.add(newGene)
+    result.add(newGene)
 
 
 proc integerUnique*(popRange, chromRange: int): Population =
@@ -22,7 +22,7 @@ proc integerUnique*(popRange, chromRange: int): Population =
   ## Create population
   ## chrom is unique, non-deplicated.
   ##
-  result = Population()
+  result = @[]
 
   var 
     tmpArray: seq[int]
@@ -35,7 +35,7 @@ proc integerUnique*(popRange, chromRange: int): Population =
   for i in 0..<popRange:
     shuffle(tmpArray)
     newGene = Gene(chrom: tmpArray, score: 0.0)
-    result.gene.add(newGene)
+    result.add(newGene)
 
 
 proc binaryStandard*(popRange, chromRange: int): Population =
@@ -43,7 +43,7 @@ proc binaryStandard*(popRange, chromRange: int): Population =
   ## Create population
   ## Chrom is binary.
   ##
-  result = Population()
+  result = @[]
 
   var newGene: Gene
 
@@ -51,4 +51,4 @@ proc binaryStandard*(popRange, chromRange: int): Population =
     newGene = Gene(chrom: @[], score: 0.0)
     for j in 0..<chromRange:
       newGene.chrom.add(rand(1))
-    result.gene.add(newGene)
+    result.add(newGene)

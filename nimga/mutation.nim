@@ -1,5 +1,5 @@
 import random
-import objects
+import types
 
 
 proc willMutate*(mutationProb=0.1): bool =
@@ -12,17 +12,17 @@ proc willMutate*(mutationProb=0.1): bool =
     result = false
 
 
-proc runMutation*(genes: seq[Gene]): seq[Gene] =
+proc runMutation*(pop: Population): Population =
   ##
-  ## Mutate chrome twice of genes
+  ## Mutate chrome twice of pop
   ##
-  result = genes # Maybe passed by reference
+  result = pop # Maybe passed by reference
 
   var target, a, b, tmp: int
 
-  target = rand(genes.len)
-  a      = rand(genes[0].chrom.len)
-  b      = rand(genes[0].chrom.len)
+  target = rand(pop.len)
+  a      = rand(pop[0].chrom.len)
+  b      = rand(pop[0].chrom.len)
 
   # Replace chrome
   tmp                     = result[target].chrom[a]
