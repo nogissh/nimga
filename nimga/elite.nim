@@ -1,5 +1,4 @@
-from objects/basic import Gene, Population
-
+import objects
 
 proc select*(genes: seq[Gene], selectRange: int): seq[Gene] =
   result = @[]

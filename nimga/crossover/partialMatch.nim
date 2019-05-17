@@ -1,6 +1,5 @@
-from random import rand
-from ../objects/crossover import CrossoverSeparator
-from ../objects/crossover import CrossoverPopulationsOld, CrossoverPopulationsNew
+import random
+import ../objects
 
 
 proc setSplit*(initialSplit, popLength: int): int =

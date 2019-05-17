@@ -1,6 +1,6 @@
 import math
 import random
-import ../objects/crossover
+import ../objects
 
 
 proc getPoints(k, length: int): seq[int] =

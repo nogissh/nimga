@@ -1,5 +1,5 @@
-from random import rand
-from objects/basic import Gene
+import random
+import objects
 
 
 proc willMutate*(mutationProb=0.1): bool =

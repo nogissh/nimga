@@ -1,5 +1,5 @@
 import random
-import objects/basic
+import objects
 
 
 proc integerStandard*(popRange, chromRange, chromMax: int): Population =
