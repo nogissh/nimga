@@ -1,8 +1,8 @@
 import random
-import ../objects/basic
+import objects/basic
 
 
-proc initPopulation*(popRange, chromRange, chromMax: int): Population =
+proc integerStandard*(popRange, chromRange, chromMax: int): Population =
   ##
   ## Create initial population
   ##
@@ -17,7 +17,7 @@ proc initPopulation*(popRange, chromRange, chromMax: int): Population =
     result.gene.add(newGene)
 
 
-proc initPopulationUnique*(popRange, chromRange: int): Population =
+proc integerUnique*(popRange, chromRange: int): Population =
   ##
   ## Create initial population
   ## chrom is unique, non-deplicated.
