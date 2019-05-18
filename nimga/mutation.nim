@@ -16,7 +16,7 @@ proc runMutation*(pop: Population): Population =
   ##
   ## Mutate chrome twice of pop
   ##
-  result = pop # Maybe passed by reference
+  deepCopy(result, pop)
 
   var target, a, b, tmp: int
 
