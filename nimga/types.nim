@@ -1,4 +1,4 @@
 import objects
 
-type Population* = seq[Gene]
+type Population* = seq[Individual]
 type Chrom*      = seq[int]

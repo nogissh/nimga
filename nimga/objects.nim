@@ -1,4 +1,4 @@
-type Gene* = ref object of RootObj
+type Individual* = ref object of RootObj
   chrom*: seq[int]
   score*: float
 

@@ -8,13 +8,13 @@ proc integerStandard*(popRange, chromRange, chromMax: int): Population =
   ##
   result = @[]
 
-  var newGene: Gene
+  var newIndividual: Individual
 
   for i in 0..<popRange:
-    newGene = Gene(chrom: @[], score: 0.0)
+    newIndividual = Individual(chrom: @[], score: 0.0)
     for j in 0..<chromRange:
-      newGene.chrom.add(rand(chromMax))
-    result.add(newGene)
+      newIndividual.chrom.add(rand(chromMax))
+    result.add(newIndividual)
 
 
 proc integerUnique*(popRange, chromRange: int): Population =
@@ -26,7 +26,7 @@ proc integerUnique*(popRange, chromRange: int): Population =
 
   var 
     tmpArray: seq[int]
-    newGene : Gene
+    newIndividual : Individual
 
   tmpArray = @[]
   for n in 0..<chromRange:
@@ -34,8 +34,8 @@ proc integerUnique*(popRange, chromRange: int): Population =
 
   for i in 0..<popRange:
     shuffle(tmpArray)
-    newGene = Gene(chrom: tmpArray, score: 0.0)
-    result.add(newGene)
+    newIndividual = Individual(chrom: tmpArray, score: 0.0)
+    result.add(newIndividual)
 
 
 proc binaryStandard*(popRange, chromRange: int): Population =
@@ -45,10 +45,10 @@ proc binaryStandard*(popRange, chromRange: int): Population =
   ##
   result = @[]
 
-  var newGene: Gene
+  var newIndividual: Individual
 
   for i in 0..<popRange:
-    newGene = Gene(chrom: @[], score: 0.0)
+    newIndividual = Individual(chrom: @[], score: 0.0)
     for j in 0..<chromRange:
-      newGene.chrom.add(rand(1))
-    result.add(newGene)
+      newIndividual.chrom.add(rand(1))
+    result.add(newIndividual)
