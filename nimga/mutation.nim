@@ -20,9 +20,9 @@ proc runMutation*(pop: Population): Population =
 
   var target, a, b, tmp: int
 
-  target = rand(pop.len)
-  a      = rand(pop[0].chrom.len)
-  b      = rand(pop[0].chrom.len)
+  target = rand(pop.len - 1)
+  a      = rand(pop[0].chrom.len - 1)
+  b      = rand(pop[0].chrom.len - 1)
 
   # Replace chrome
   tmp                     = result[target].chrom[a]
