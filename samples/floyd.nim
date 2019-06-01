@@ -41,13 +41,13 @@ proc runFloyd*(N, popLength, generateTime, saveElite: int): seq[int] =
     popNext = select(pop, saveElite)
 
     # Generation
-    for j in countup(2, (popLength - saveElite) - 1, 2):    
+    for j in countup(2, (popLength - saveElite) - 1, 2):
       # Selection
       a = rouletteSelection(map(pop, proc(p: Individual): float = p.score))
       b = rouletteSelection(map(pop, proc(p: Individual): float = p.score))
 
       # Crossover
-      crossovered = runKPoint(pop[a].chrom, pop[b].chrom, 3)
+      crossovered = runKPoint(pop[a].chrom, pop[b].chrom, 1)
 
       # Add to new generation
       popNext.add(Individual(chrom: crossovered.a, score: 0.0))
