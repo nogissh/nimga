@@ -1,11 +1,5 @@
 import algorithm, random, math, sequtils
-import types, objects
-import population
-import elite
-import mutation
-from selection/roulette import rouletteSelection
-from crossover/kPoint import runKPoint
-from tools/customsort import sortIndividualsByScore
+import nimga
 
 randomize()
 
@@ -27,7 +21,7 @@ proc runFloyd*(N, popLength, generateTime, saveElite: int): seq[int] =
   ###
 
   # Initial population
-  pop = binaryStandard(popLength, N)
+  pop = pcBinStd(popLength, N)
 
   # Initial evaluation
   for i in 0..<popLength:
@@ -38,7 +32,7 @@ proc runFloyd*(N, popLength, generateTime, saveElite: int): seq[int] =
 
   for i in 0..<generateTime:
     # Ready new generation
-    popNext = select(pop, saveElite)
+    popNext = selectElite(pop, saveElite)
 
     # Generation
     for j in countup(2, (popLength - saveElite) - 1, 2):
@@ -47,7 +41,7 @@ proc runFloyd*(N, popLength, generateTime, saveElite: int): seq[int] =
       b = rouletteSelection(map(pop, proc(p: Individual): float = p.score))
 
       # Crossover
-      crossovered = runKPoint(pop[a].chrom, pop[b].chrom, 1)
+      crossovered = kPointCrossover(pop[a].chrom, pop[b].chrom, 1)
 
       # Add to new generation
       popNext.add(Individual(chrom: crossovered.a, score: 0.0))
@@ -55,11 +49,11 @@ proc runFloyd*(N, popLength, generateTime, saveElite: int): seq[int] =
     
     # Mutation
     if (willMutate()):
-      popNext[saveElite..<popNext.len] = runMutation(popNext[saveElite..<popNext.len])
+      popNext[saveElite..<popNext.len] = mutate(popNext[saveElite..<popNext.len])
     
     # Push new population when pops less than popLength
     if (popNext.len < popLength):
-      popNext.add(binaryStandard(popLength - popNext.len, N))
+      popNext.add(pcBinStd(popLength - popNext.len, N))
     
     # Evaluation
     for j in 0..<popLength:

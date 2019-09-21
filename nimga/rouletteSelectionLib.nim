@@ -1,13 +1,10 @@
-from math import sum
-from random import rand
+import math, random
 
 
-proc getListWeight*(scores: seq[float]): seq[float] =
+proc getListWeight(scores: seq[float]): seq[float] =
   ##
   ## List of weight
   ##
-
-  # sums
   var summed: float = sum(scores)
 
   result = @[]
@@ -15,7 +12,7 @@ proc getListWeight*(scores: seq[float]): seq[float] =
     result.add(score / summed)
 
 
-proc getListTot*(weight: seq[float]): seq[float] =
+proc getListTot(weight: seq[float]): seq[float] =
   ##
   ## Create roulette as list
   ##
@@ -24,7 +21,7 @@ proc getListTot*(weight: seq[float]): seq[float] =
     result.add(sum(weight[0..i]))
 
 
-proc selection*(tot: seq[float], r: float): int =
+proc selection(tot: seq[float], r: float): int =
   ##
   ## Return selected index
   ##
@@ -33,19 +30,16 @@ proc selection*(tot: seq[float], r: float): int =
       return i
 
 
-proc rouletteSelection*(scores: seq[float]): int =
+proc runRouletteSelection*(scores: seq[float]): int =
   ##
   ## Roulette selection
   ##
-
   var
-    r   : float
-    weight, tot : seq[float]
+    r: float
+    weight, tot: seq[float]
   
-  # Get some parameters
   weight = getListWeight(scores)
   tot    = getListTot(weight)
   r      = rand(1.0)
 
-  # Set index
   result = selection(tot, r)
