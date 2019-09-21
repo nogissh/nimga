@@ -1,5 +1,5 @@
 import random, algorithm
-import generationtools/selection/[ranking, roulette]
+import nimga/[rankingSelectionLib, rouletteSelectionLib]
 
 
 type
