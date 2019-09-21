@@ -1,8 +1,7 @@
-from math import sum
-from random import rand
+import math, random
 
 
-proc getListRankingPoint*(length: int): seq[float] =
+proc getListRankingPoint(length: int): seq[float] =
   ##
   ## Create list of Ranking point
   ##
@@ -11,12 +10,10 @@ proc getListRankingPoint*(length: int): seq[float] =
     result.add(n.toFloat())
 
 
-proc getListWeight*(listRankingPoint: seq[float]): seq[float] =
+proc getListWeight(listRankingPoint: seq[float]): seq[float] =
   ##
   ## List of weight
   ##
-
-  # sums
   var summed: float = sum(listRankingPoint)
 
   result = @[]
@@ -24,7 +21,7 @@ proc getListWeight*(listRankingPoint: seq[float]): seq[float] =
     result.add(point / summed)
 
 
-proc getListTot*(weight: seq[float]): seq[float] =
+proc getListTot(weight: seq[float]): seq[float] =
   ##
   ## Normalize ranking point
   ##
@@ -33,7 +30,7 @@ proc getListTot*(weight: seq[float]): seq[float] =
     result.add(sum(weight[0..i]))
 
 
-proc selection*(tot: seq[float], r: float): int =
+proc selection(tot: seq[float], r: float): int =
   ##
   ## Return selected index
   ##
@@ -42,20 +39,17 @@ proc selection*(tot: seq[float], r: float): int =
       return i
 
 
-proc rankingSelection*(popLength: int): int =
+proc runRankingSelection*(popLength: int): int =
   ##
   ## Ranking selection
   ##
-
   var
-    summed, r: float
+    r: float
     listRankingPoint, weight, tot: seq[float]
   
-  # Get some parameters
   listRankingPoint = getListRankingPoint(popLength)
   weight           = getListWeight(listRankingPoint)
   tot              = getListTot(weight)
   r                = rand(1.0)
 
-  # Set index
   result = selection(tot, r)
