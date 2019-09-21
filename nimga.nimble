@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.0.0"
+version       = "0.2.0"
 author        = "Toshiki Ohnogi"
 description   = "Genetic Algorithm Library for Nim."
 license       = "MIT"
