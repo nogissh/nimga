@@ -53,6 +53,18 @@ test "`Chrom` is `seq[int]`":
   check sample.type.name == "seq[int]"
 
 
+test "pcIntStd":
+  var
+    popRange   = 10
+    chromRange = 100
+    chromMax   = 10
+
+  var result = pcIntStd(popRange, chromRange, chromMax)
+  for i in 0..<popRange:
+    check result[i].chrom.len == chromRange
+    check max(result[i].chrom) <= chromMax
+
+
 test "pcIntUniq":
   var
     popRange   = 10
@@ -74,3 +86,15 @@ test "pcIntUniq":
   for i in 0..<popRange:
     for j in 0..<without.len:
       check not resultTwo[i].chrom.contains(without[j])
+
+
+test "pcBinStd":
+  var
+    popRange   = 10
+    chromRange = 100
+
+  var result = pcBinStd(popRange, chromRange)
+  for i in 0..<popRange:
+    check result[i].chrom.len == chromRange
+    check max(result[i].chrom) == 1
+    check min(result[i].chrom) == 0
