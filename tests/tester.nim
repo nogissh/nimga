@@ -1,7 +1,5 @@
-import unittest
-import typetraits
-
-import ../nimga/nimga
+import unittest, typetraits
+import ../nimga
 
 
 test "`Individual` is Individual":
@@ -12,6 +10,7 @@ test "`Individual` is Individual":
   check sample.chrom.type.name == "seq[int]"
   check sample.score.type.name == "float"
 
+
 test "`CrossoverSeparator` is CrossoverSeparator":
   var sample: CrossoverSeparator = CrossoverSeparator()
   sample.a = 0
@@ -19,6 +18,7 @@ test "`CrossoverSeparator` is CrossoverSeparator":
   check sample.type.name == "CrossoverSeparator"
   check sample.a.type.name == "int"
   check sample.b.type.name == "int"
+
 
 test "`CrossoverTargetChrom` is CrossoverTargetChrom":
   var sample: CrossoverTargetChrom = CrossoverTargetChrom()
@@ -28,6 +28,7 @@ test "`CrossoverTargetChrom` is CrossoverTargetChrom":
   check sample.a.type.name == "seq[int]"
   check sample.b.type.name == "seq[int]"
 
+
 test "`CrossoveredChrom` is CrossoveredChrom":
   var sample: CrossoveredChrom = CrossoveredChrom()
   sample.a = @[0]
@@ -35,6 +36,7 @@ test "`CrossoveredChrom` is CrossoveredChrom":
   check sample.type.name == "CrossoveredChrom"
   check sample.a.type.name == "seq[int]"
   check sample.b.type.name == "seq[int]"
+
 
 test "`Population` is `seq[Individual]`":
   var
@@ -45,6 +47,30 @@ test "`Population` is `seq[Individual]`":
   sample.add(indSmp)
   check sample.type.name == "seq[Individual]"
 
+
 test "`Chrom` is `seq[int]`":
   var sample: Chrom = @[0,1,2]
   check sample.type.name == "seq[int]"
+
+
+test "pcIntUniq":
+  var
+    popRange   = 10
+    chromRange = 100
+    without    = @[2, 10, 50]
+
+  var resultOne = pcIntUniq(popRange, chromRange)
+  check resultOne.len == popRange
+  for i in 0..<popRange:
+    check resultOne[i].chrom.len == chromRange
+  for i in 0..<popRange:
+    for j in 0..<without.len:
+      check resultOne[i].chrom.contains(without[j])
+      
+  var resultTwo = pcIntUniq(popRange, chromRange, without)
+  check resultTwo.len == popRange
+  for i in 0..<popRange:
+    check resultTwo[i].chrom.len == chromRange - without.len
+  for i in 0..<popRange:
+    for j in 0..<without.len:
+      check not resultTwo[i].chrom.contains(without[j])
