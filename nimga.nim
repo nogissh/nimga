@@ -71,12 +71,17 @@ proc pcIntStd*(popRange, chromRange, chromMax: int): Population =
     result.add(newIndividual)
 
 
-proc pcIntUniq*(popRange, chromRange: int): Population =
+proc pcIntUniq*(popRange, chromRange: int, without: seq[int] = @[]): Population =
   ##
   ## Population Creation as Integer Unique
   ## chrom is unique, non-deplicated.
   ##
-  ## Example: individual.chrom = @[1, 3, 2, 4, 0]
+  ## >> Example: individual.chrom = @[1, 3, 2, 4, 0]
+  ##
+  ## If without list contains element, generated chrom
+  ## not containing `without` list elements.
+  ##
+  ## >> Example: individual.chrom = @[1, 3, 0] (without = @[2, 4])
   ##
   result = @[]
 
@@ -86,6 +91,8 @@ proc pcIntUniq*(popRange, chromRange: int): Population =
 
   tmpArray = @[]
   for n in 0..<chromRange:
+    if n in without:
+      continue
     tmpArray.add(n)
 
   for i in 0..<popRange:
